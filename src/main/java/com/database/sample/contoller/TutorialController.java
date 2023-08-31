@@ -18,6 +18,7 @@ public class TutorialController {
     private TutorialService tutorialService;
 
     @PostMapping("/tutorials")
+
     public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
         try {
             Tutorial _tutorial = tutorialService.createTutorial(tutorial);
@@ -33,20 +34,18 @@ public class TutorialController {
         return ResponseEntity.ok(tutorialList);
     }
 
-/*
+
     @GetMapping("/tutorials/{id}")
     public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
-        Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
-
-        if (tutorialData.isPresent()) {
-            return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Tutorial tutorialData = tutorialService.getTutorialById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(tutorialData);
     }
 
 
 
+
+
+/*
     @PutMapping("/tutorials/{id}")
     public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
         Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
